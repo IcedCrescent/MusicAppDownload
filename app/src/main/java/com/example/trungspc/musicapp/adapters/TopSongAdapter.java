@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.example.trungspc.musicapp.R;
 import com.example.trungspc.musicapp.database.TopSongModel;
+import com.example.trungspc.musicapp.events.OnClickTopSong;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +62,23 @@ public class TopSongAdapter extends RecyclerView.Adapter<TopSongAdapter.TopSongV
             ButterKnife.bind(this, itemView);
         }
 
-        public void setData(TopSongModel topSongModel) {
-            Picasso.get().load(topSongModel.getImage()).transform(new CropCircleTransformation()).into(ivTopSong);
+        public void setData(final TopSongModel topSongModel) {
+            if (topSongModel.getImage() == null) {
+                Picasso.get().load(R.drawable.no_network).transform(new CropCircleTransformation()).into(ivTopSong);
+            } else {
+                Picasso.get().load(topSongModel.getImage()).transform(new CropCircleTransformation()).into(ivTopSong);
+            }
             tvSong.setText(topSongModel.getSong());
             tvArtist.setText(topSongModel.getArtist());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().postSticky(new OnClickTopSong(topSongModel));
+
+                }
+            });
+
         }
     }
 }

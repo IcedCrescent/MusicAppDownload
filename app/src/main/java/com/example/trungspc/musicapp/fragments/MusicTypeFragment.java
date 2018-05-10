@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import com.example.trungspc.musicapp.R;
 import com.example.trungspc.musicapp.adapters.MusicTypeAdapter;
 import com.example.trungspc.musicapp.database.MusicTypeModel;
-import com.example.trungspc.musicapp.network.IMusicType;
+import com.example.trungspc.musicapp.network.IMusicService;
 import com.example.trungspc.musicapp.network.MusicTypeResponse;
 import com.example.trungspc.musicapp.network.RetrofitInstance;
 
@@ -75,7 +74,7 @@ public class MusicTypeFragment extends Fragment {
     }
 
     private void loadData() {
-        IMusicType musicType = RetrofitInstance.getRetrofitInstance().create(IMusicType.class);
+        IMusicService musicType = RetrofitInstance.getRetrofitInstance().create(IMusicService.class);
         musicType.getListMusicTypes().enqueue(new Callback<MusicTypeResponse>() {
             @Override
             public void onResponse(Call<MusicTypeResponse> call, Response<MusicTypeResponse> response) {

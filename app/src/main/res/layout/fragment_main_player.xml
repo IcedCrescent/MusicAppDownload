@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
-    tools:context=".MainPlayer">
+    android:clickable="true"
+    tools:context=".fragments.MainPlayer">
 
     <ImageView
         android:id="@+id/iv_back"
@@ -43,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_file_download_white_24dp"
+        android:src="@drawable/ic_file_download_black_24dp"
         android:padding="20dp"/>
 
     <LinearLayout
@@ -62,16 +64,26 @@
         android:padding="20dp"
         android:layout_margin="20dp"/>
 
-    <ImageView
-        android:id="@+id/iv_play"
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_play"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:src="@drawable/ic_play_arrow_white_24dp"-->
+        <!--android:background="@drawable/roundedbutton"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:padding="20dp"-->
+        <!--android:layout_margin="20dp"/>-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_play_arrow_white_24dp"
-        android:background="@drawable/roundedbutton"
         android:layout_centerHorizontal="true"
-        android:padding="20dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        app:fabSize="normal"/>
 
     <ImageView
         android:id="@+id/iv_next_track"
@@ -106,19 +118,23 @@
         android:id="@+id/sb_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/iv_play"
+        android:layout_above="@id/fab_play"
         android:layout_toRightOf="@id/tv_current_time"
         android:layout_toLeftOf="@id/tv_duration"
-        android:padding="10dp"
-        android:progress="50"/>
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_album"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_below="@id/tv_artist"
-        android:layout_above="@id/sb_duration"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/avicii"
-        android:layout_margin="20dp"
         android:scaleType="centerCrop"/>
+
+
 
 </RelativeLayout>
